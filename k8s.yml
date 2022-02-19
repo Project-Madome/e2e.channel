@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: madome-debug
+    name: madome-e2e-channel
 spec:
     selector:
         matchLabels:
-            app: madome-debug
+            app: madome-e2e-channel
     template:
         metadata:
             labels:
-                app: madome-debug
+                app: madome-e2e-channel
         spec:
             containers:
-                - name: madome-debug
-                  image: madome-debug:latest
+                - name: madome-e2e-channel
+                  image: madome-e2e-channel:latest
                   imagePullPolicy: Never
                   resources:
                       limits:
@@ -22,17 +22,17 @@ spec:
                   ports:
                       - containerPort: 3112
                   env:
-                      - name: DEBUG_URL
+                      - name: E2E_TESTING_URL
                         value: http://madome-e2e
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: madome-debug
+    name: madome-e2e-channel
 spec:
     type: NodePort
     selector:
-        app: madome-debug
+        app: madome-e2e-channel
     ports:
         - port: 3112
           protocol: TCP

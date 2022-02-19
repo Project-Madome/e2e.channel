@@ -59,9 +59,9 @@ export const get_authcode = async (command: GetAuthcode) => {
 
     console.log("got ", body);
 
-    console.log(Deno.env.get("DEBUG_URL"));
+    console.log(Deno.env.get("E2E_TESTING_URL"));
 
-    let r = await fetch(`${Deno.env.get("DEBUG_URL")}:${command.port}`, {
+    let r = await fetch(`${Deno.env.get("E2E_TESTING_URL")}:${command.port}`, {
         method: "POST",
         body: JSON.stringify(body),
     });
